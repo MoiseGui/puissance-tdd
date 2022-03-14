@@ -9,18 +9,21 @@ public class Grille {
             }
         }
     }
-
-    public String[][] getMatrice() {
-        return matrice;
-    }
-
-    public void setMatrice(String[][] matrice) {
-        this.matrice = matrice;
-    }
-
     public void putToken(String token, int column) {
 
         matrice[5][column - 1] = token;
 
+    }
+
+    public int getNumberOfLines() {
+        return 6;
+    }
+
+    public int getNumberOfColumns() {
+        return 7;
+    }
+
+    public String getTokenAt(int line, int column) {
+        return matrice[line-1][column-1];
     }
 }
