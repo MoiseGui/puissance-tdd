@@ -3,6 +3,11 @@ public class Grille {
 
     public Grille() {
         matrice = new String[6][7];
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                matrice[i][j] = ".";
+            }
+        }
     }
 
     public String[][] getMatrice() {
