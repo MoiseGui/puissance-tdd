@@ -52,4 +52,17 @@ public class GrilleTest {
             }
         }
     }
+
+    @Test()
+    public void shouldThrowExceptionWhenTryingToAddTokenOnColumnGreaterThen7(){
+        Grille grille = new Grille();
+        assertThrows(IllegalArgumentException.class, () -> grille.putToken("X", 9));
+    }
+
+    @Test()
+    public void shouldThrowExceptionWhenTryingToAddTokenOnColumnLesserThen1(){
+        Grille grille = new Grille();
+        assertThrows(IllegalArgumentException.class, () -> grille.putToken("X", 0));
+    }
+
 }

@@ -1,5 +1,5 @@
 public class Grille {
-    private String[][] matrice;
+    private final String[][] matrice;
 
     public Grille() {
         matrice = new String[6][7];
@@ -9,8 +9,10 @@ public class Grille {
             }
         }
     }
-    public void putToken(String token, int column) {
 
+    public void putToken(String token, int column) {
+        if(column > 7) throw new IllegalArgumentException("column should be less than 8");
+        if(column < 1) throw new IllegalArgumentException("column should be greater than 0");
         matrice[5][column - 1] = token;
 
     }
