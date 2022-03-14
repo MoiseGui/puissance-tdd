@@ -1,8 +1,9 @@
-import org.junit.jupiter.api.Assertions;
+import exception.ColumnFullException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GrilleTest {
     Grille grille;
@@ -90,6 +91,17 @@ public class GrilleTest {
         }
 
 
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenTryingToAddTokenOnFullColumn(){
+        grille.putToken("X", 1);
+        grille.putToken("X", 1);
+        grille.putToken("X", 1);
+        grille.putToken("X", 1);
+        grille.putToken("X", 1);
+        grille.putToken("X", 1);
+        assertThrows(ColumnFullException.class, () -> grille.putToken("X", 1));
     }
 
 }

@@ -1,3 +1,5 @@
+import exception.ColumnFullException;
+
 public class Grille {
     private final String[][] matrice;
 
@@ -21,11 +23,13 @@ public class Grille {
 
     }
 
-    public void putToken(String token, int column) {
+    public void putToken(String token, int column) throws ColumnFullException {
         if (column > 7) throw new IllegalArgumentException("column should be less than 8");
         if (column < 1) throw new IllegalArgumentException("column should be greater than 0");
 
         int lastEmptyCell = getLastEmptyCellInColumn(column - 1);
+
+        if(lastEmptyCell == -1) throw new ColumnFullException();
 
         matrice[lastEmptyCell][column - 1] = token;
     }
