@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GrilleTest {
     @Test
-    public void shouldHave6LinesAfterInitialisation(){
+    public void shouldHave6LinesAfterInitialisation() {
         Grille grille = new Grille();
         int result = grille.getMatrice().length;
 
@@ -13,20 +13,40 @@ public class GrilleTest {
     }
 
     @Test
-    public void shouldHave7ColonesAfterInitialisation(){
+    public void shouldHave7ColonesAfterInitialisation() {
         Grille grille = new Grille();
         int result = grille.getMatrice()[0].length;
 
         assertEquals(7, result);
     }
+
     @Test
-    public void shouldBeFilledWithSymbolPointAfterInitialisation(){
+    public void shouldBeFilledWithSymbolPointAfterInitialisation() {
         Grille grille = new Grille();
-        for (int i =0;i<6;i++) {
+        for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
-                String result=grille.getMatrice()[i][j];
-                assertEquals(".",result);
+                String result = grille.getMatrice()[i][j];
+                assertEquals(".", result);
             }
         }
+    }
+
+    @Test
+    public void shouldPutTokenOnTheLastLineOfEmptyColumn1() {
+
+        String[][] expectedMatrice = {
+                {".", ".", ".", ".", ".", ".","."},
+                {".", ".", ".", ".", ".", ".","."},
+                {".", ".", ".", ".", ".", ".","."},
+                {".", ".", ".", ".", ".", ".","."},
+                {".", ".", ".", ".", ".", ".","."},
+                {"X", ".", ".", ".", ".", ".","."},
+        };
+        Grille grille = new Grille();
+        grille.putToken("X", 1);
+
+        assertArrayEquals(expectedMatrice, grille.getMatrice());
+
+
     }
 }

@@ -17,4 +17,10 @@ public class Grille {
     public void setMatrice(String[][] matrice) {
         this.matrice = matrice;
     }
+
+    public void putToken(String token, int column) {
+
+        matrice[5][column - 1] = token;
+
+    }
 }
