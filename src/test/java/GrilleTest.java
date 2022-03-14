@@ -67,4 +67,29 @@ public class GrilleTest {
         assertThrows(IllegalArgumentException.class, () -> grille.putToken("X", 0));
     }
 
+    @Test
+    public void shouldAddTokenOnTopOfExistingTokensInColumn(){
+
+        String[][] expectedMatrice = {
+                {".", ".", ".", ".", ".", ".","."},
+                {".", ".", ".", ".", ".", ".","."},
+                {".", ".", ".", ".", ".", ".","."},
+                {".", ".", ".", ".", ".", ".","."},
+                {"X", ".", ".", ".", ".", ".","."},
+                {"X", ".", ".", ".", ".", ".","."},
+        };
+
+        grille.putToken("X", 1);
+        grille.putToken("X", 1);
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                String result = grille.getTokenAt(i + 1, j + 1);
+                assertEquals(expectedMatrice[i][j], result);
+            }
+        }
+
+
+    }
+
 }

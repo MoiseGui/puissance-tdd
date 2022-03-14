@@ -10,11 +10,24 @@ public class Grille {
         }
     }
 
-    public void putToken(String token, int column) {
-        if(column > 7) throw new IllegalArgumentException("column should be less than 8");
-        if(column < 1) throw new IllegalArgumentException("column should be greater than 0");
-        matrice[5][column - 1] = token;
+    private int getLastEmptyCellInColumn(int column) {
 
+        for (int i = 5; i >= 0; i--) {
+            if (matrice[i][column].equals(".")) {
+                return i;
+            }
+        }
+        return -1;
+
+    }
+
+    public void putToken(String token, int column) {
+        if (column > 7) throw new IllegalArgumentException("column should be less than 8");
+        if (column < 1) throw new IllegalArgumentException("column should be greater than 0");
+
+        int lastEmptyCell = getLastEmptyCellInColumn(column - 1);
+
+        matrice[lastEmptyCell][column - 1] = token;
     }
 
     public int getNumberOfLines() {
@@ -26,6 +39,6 @@ public class Grille {
     }
 
     public String getTokenAt(int line, int column) {
-        return matrice[line-1][column-1];
+        return matrice[line - 1][column - 1];
     }
 }
