@@ -1,5 +1,7 @@
 import exception.ColumnFullException;
 
+import java.util.List;
+
 public class Grille {
     private final String[][] matrice;
 
@@ -44,5 +46,17 @@ public class Grille {
 
     public String getTokenAt(int line, int column) {
         return matrice[line - 1][column - 1];
+    }
+
+    public List<String[]> getColumns(){
+        return null;
+    }
+
+    public List<String[]> getLines(){
+        return null;
+    }
+
+    public List<String[]> getDiagonals(){
+        return null;
     }
 }
