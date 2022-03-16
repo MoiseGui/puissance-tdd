@@ -29,12 +29,13 @@ public class ApplicationTest {
     @Test
     void shouldCallPrintTheGridOnStart(){
         application.start();
-        verify(vue, times(1)).write(GRID_PLACEHOLDER);
+        InOrder inOrder = inOrder(vue);
+
+        inOrder.verify(vue).write(GRID_PLACEHOLDER);
     }
 
     @Test
     void shouldCallPrintTheFirstTourAfterGridToString(){
-        Application application = new Application(grille, vue);
         application.start();
 
         InOrder inOrder = inOrder(vue);
@@ -45,7 +46,6 @@ public class ApplicationTest {
 
     @Test
     void shouldAskTheFirstUserToChooseAColumn(){
-        Application application = new Application(grille, vue);
         application.start();
 
         InOrder inOrder = inOrder(vue);
@@ -53,5 +53,31 @@ public class ApplicationTest {
         inOrder.verify(vue).write(GRID_PLACEHOLDER);
         inOrder.verify(vue).write(FIRST_TO_PLAY);
         inOrder.verify(vue).write(ASK_TO_PLAY_MESSAGE);
+    }
+
+    @Test
+    void shouldReadColumnAndCallGridToInsert(){
+        when(vue.read()).thenReturn(3);
+        application.start();
+
+        InOrder inOrder = inOrder(vue, grille);
+
+        inOrder.verify(vue).write(GRID_PLACEHOLDER);
+        inOrder.verify(vue).write(FIRST_TO_PLAY);
+        inOrder.verify(vue).write(ASK_TO_PLAY_MESSAGE);
+        inOrder.verify(vue).read();
+        inOrder.verify(grille).putToken("X", 3);
+    }
+
+    @Test
+    void shouldPrintUpdatedGridAfterInsertion(){
+        when(vue.read()).thenReturn(3);
+
+        application.start();
+
+        InOrder inOrder = inOrder(vue, grille);
+
+        inOrder.verify(grille).putToken("X", 3);
+        inOrder.verify(vue).write(GRID_PLACEHOLDER);
     }
 }

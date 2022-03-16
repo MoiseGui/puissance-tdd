@@ -9,7 +9,7 @@ public class VueMock implements Vue {
     }
 
     @Override
-    public String read() {
-        return null;
+    public int read() {
+        return 0;
     }
 }

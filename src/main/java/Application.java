@@ -13,6 +13,9 @@ public class Application {
         vue.write(grille.toString());
         vue.write(getFirstPlayer());
         vue.write("Please choose a column: ");
+        int numColumn = vue.read();
+        grille.putToken("X", numColumn);
+        vue.write(grille.toString());
     }
 
     private String getFirstPlayer(){
