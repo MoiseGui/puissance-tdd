@@ -1,5 +1,6 @@
 import exception.ColumnFullException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Grille {
@@ -58,5 +59,14 @@ public class Grille {
 
     public List<String[]> getDiagonals(){
         return null;
+    }
+
+    @Override
+    public String toString() {
+        List<String> tempo = new ArrayList<>();
+        for (String[] line : matrice) {
+            tempo.add(String.join("", line));
+        }
+        return String.join("\n", tempo);
     }
 }
